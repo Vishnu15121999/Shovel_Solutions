@@ -1,10 +1,29 @@
-import { Autocomplete, Box, Input, TextField, Typography } from '@mui/material';
-import React from 'react'
+import { Box, TextField, Typography } from '@mui/material';
+import React from 'react';
+import {useSelector , useDispatch} from 'react-redux';
+import { formActions } from '../store';
 
 const HospitalSecondForm = () => {
+    const countries=useSelector((state)=>state.countriesData.countries);
+    const selectedCountry=useSelector((state) => state.countriesData.selectedCountry);
+    const states=useSelector((state)=>state.countriesData.states);
+    const selecedState=useSelector((state) => state.countriesData.selecedState);
+    const dispatch=useDispatch();
+    //console.log(countries);
+    //console.log(states);
+
+    const handleCountryChange=(e)=>{
+        const selectedCountryName=e.target.value;
+        dispatch(formActions.setCountry(selectedCountryName));
+        dispatch(formActions.setState(''))
+    }
+
+    const handleStateChange=(e)=>{
+        const selectedStateName=e.target.value;
+        dispatch(formActions.setState(selectedStateName))
+    }
 
 
-    const options=['India','Nepal','USA','Spain','United Kingdom','Germany']
   return (
     <div style={{width:'80%' , margin:'0 auto' , marginTop:'30px'}}>
         <Box sx={{margin:'10px 0px'}}>
@@ -29,11 +48,19 @@ const HospitalSecondForm = () => {
             <Box sx={{display:'flex' , alignItems:'center' , justifyContent:'space-between' , margin:'10px 0px'}}>
                 <Box sx={{width:'45%'}}>
                     <Typography>Country</Typography>
-                    <Autocomplete options={options} renderInput={(params) => (<TextField {...params} label="" variant="standard" />)}/>
+                    <select value={selectedCountry} onChange={handleCountryChange} className='hospital-form-select'>
+                        {countries.map((count)=>(
+                            <option value={count} key={count}>{count}</option>
+                        ))}
+                    </select>
                 </Box>
                 <Box sx={{width:'45%'}}>
                     <Typography>City</Typography>
-                    <Autocomplete options={options} renderInput={(params) => (<TextField {...params} label="" variant="standard" />)}/>
+                    <select value={selecedState} onChange={handleStateChange} className='hospital-form-select'>
+                        {selectedCountry && states[selectedCountry] && states[selectedCountry].map(state => (
+                                <option key={state} value={state}>{state}</option>
+                            ))}
+                    </select>
                 </Box>
             </Box>
             <Box sx={{display:'flex' , alignItems:'center' , justifyContent:'space-between' , margin:'10px 0px'}}>
@@ -56,3 +83,6 @@ const HospitalSecondForm = () => {
 }
 
 export default HospitalSecondForm;
+
+
+//<Autocomplete options={options} renderInput={(params) => (<TextField {...params} label="" variant="standard" />)}/>

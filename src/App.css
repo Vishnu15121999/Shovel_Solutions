@@ -116,6 +116,9 @@
   width: 100%;
   margin-top: 30px;
 }
+.patient-table-body{
+  animation: appear 1s ease-in-out 0s forwards;
+}
 .table-head{
   padding: 15px;
   border: 1px solid #ddd;
@@ -125,6 +128,9 @@
   text-align: center;
   padding: 20px 30px;
   border: 1px solid #ddd;
+}
+.table-row-ani{
+  animation: appear 1s ease-in-out 0s forwards;
 }
 .user-photo{
   width: 50px;
@@ -207,13 +213,44 @@
   margin-top: 30px;
 }
 .company-logo{
-  width: 100px;
+  width: 200px;
   height: 100px;
+  object-fit: contain;
+}
+.company-logo2{
+  width: 250px;
   object-fit: cover;
+  padding-bottom: 10px;
+}
+.dashboard-select{
+  padding: 19px;
+  font-weight: 600;
+  border-radius: 5px;
+  width: 260px;
+}
+.dashboard-option{
+  font-weight: 600;
+  font-size: 15px;
+}
+.hospital-form-select{
+  padding: 15px 20px;
+  font-weight: 500;
+  font-size: 15px; 
 }
 
 
 
+
+@keyframes appear{
+  from{
+    opacity: 0.0;
+    top: -100px;
+  }
+  to{
+    opacity: 1.0;
+    top: 0.0px;
+  }
+}
 
 
 @keyframes App-logo-spin {
@@ -224,3 +261,4 @@
     transform: rotate(360deg);
   }
 }
+

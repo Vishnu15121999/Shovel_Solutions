@@ -12,7 +12,7 @@ const PolicyOverView = () => {
                 display:'flex' , flexDirection:'column' , alignItems:'center' , justifyContent:'center' , gap:'10px'}}>
             <Box sx={{width:'95%' , bgcolor:'#EFF7FF' , height:'30%' , display:'flex' , padding:'10px' , alignItems:'center' , gap:'10px'}}>
                 <img className='policy-user-photo' src='\images\Shubman_Gill.jpg' alt='user-photo'/>
-                <Typography sx={{fontWeight:'600' , fontSize:'24px'}}>Saumil Diwakar</Typography>
+                <Typography sx={{fontWeight:'600' , fontSize:'24px'}}>Shubman Gill</Typography>
             </Box>
             <Box sx={{width:'95%' , height:'30%'}}>
                 <Typography sx={{fontWeight:'600' , fontSize:'24px' , color:"#0057B1"}}>Policy Details</Typography>

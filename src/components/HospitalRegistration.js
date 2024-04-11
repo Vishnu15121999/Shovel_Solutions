@@ -3,20 +3,25 @@ import React, { useState } from 'react'
 import HospitalFirstForm from './HospitalFirstForm'
 import HospitalSecondForm from './HospitalSecondForm'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import {useNavigate} from 'react-router-dom';
 
 const HospitalRegistration = () => {
     const [activeStep,setActiveStep]=useState(0);
+    const navigate=useNavigate();
 
     const steps=['Organization Images','Organization Details'];
 
     const handleNextStep=()=>{
         setActiveStep((prevStep)=>prevStep+1)
+        if(activeStep === 1){
+            navigate('/dashboard')
+        }
     }
 
   return (
     <div style={{margin:'20px 30px'}}>
         <div>
-            <img style={{width:'200px' , height:'100px'}} src='\images\shovelcompany_logo.jpeg' alt='company-logo'/>
+            <img style={{width:'200px' , height:'100px' , objectFit:'contain'}} src='\images\shovel_ogo.jpeg' alt='company-logo'/>
         </div>
         <div>
             <Typography variant='h4'>Add Organization Details</Typography>

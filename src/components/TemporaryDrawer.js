@@ -7,39 +7,60 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import { IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import LogoutIcon from '@mui/icons-material/Logout';
-import {useSelector} from 'react-redux';
+import {useSelector , useDispatch} from 'react-redux';
+import {authActions} from '../store';
+import {useNavigate} from 'react-router-dom';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import MessageIcon from '@mui/icons-material/Message';
+import HelpIcon from '@mui/icons-material/Help';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import GradingIcon from '@mui/icons-material/Grading';
 
 export default function TemporaryDrawer() {
   const isLoggedIn=useSelector((state)=>state.auth.isLoggedIn);
   const [open, setOpen] = useState(false);
+  const dispatch=useDispatch();
+  const navigate=useNavigate();
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
 
+  const handleLogOut=()=>{
+    dispatch(authActions.logout()) 
+    navigate('/register')
+  }
+
+  const icons=[
+    {icon: AdminPanelSettingsIcon , name :'Admin Panel'},
+    {icon : DashboardIcon , name :'Dashboard'},
+    {icon : GradingIcon , name :'Claim'},
+    {icon : MessageIcon , name :'Message'},
+    {icon : HelpIcon , name : 'Help'}
+  ]
+
   const DrawerList = (
     <Box sx={{ width: 250 , height:400 , marginTop:9 }} role="presentation" onClick={toggleDrawer(false)}>
+      <img className='company-logo2' src='\images\shovel_ogo.jpeg' alt='company-logo'/>
       <hr/>
       <List sx={{marginBottom:30}}>
-        {['Admin Panel', 'Dashboard', 'Claim', 'Message','Help'].map((text, index) => (
-          <ListItem  key={text} disablePadding>
-            <ListItemButton href={`/${text.toLocaleLowerCase()}`}>
+        {icons.map((item,index)=>(
+          <ListItem key={item.name} disablePadding>
+            <ListItemButton href={`/${item.name.toLowerCase()}`}>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <item.icon/>
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={item.name}/>
             </ListItemButton>
           </ListItem>
         ))}
       </List>
       <hr/>
       <Box sx={{display:'flex' , flexDirection:'row'}}>
-      <Button><IconButton> <LogoutIcon></LogoutIcon> </IconButton> Log out</Button>
+      <Button onClick={handleLogOut}><IconButton> <LogoutIcon></LogoutIcon> </IconButton> Log out</Button>
       </Box>
     </Box>
   );

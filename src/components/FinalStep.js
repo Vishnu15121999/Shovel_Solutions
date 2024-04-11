@@ -11,7 +11,7 @@ const FinalStep = ({handleSubmitForm}) => {
   const handleSubmit=()=>{
     handleSubmitForm();
     dispatch(authActions.login());
-    navigate('/dashboard');
+    navigate('/organization-form');
   }
 
 

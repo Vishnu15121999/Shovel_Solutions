@@ -1,10 +1,16 @@
 import { Box, Button } from '@mui/material';
 import React, { useState } from 'react';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import {useNavigate} from 'react-router-dom';
+import {useSelector} from 'react-redux';
 
 const Dashboard = () => {
+  const navigate=useNavigate();
   const [selectedDate,setSelectedDate]=useState(null);
+  const isLoggedIn=useSelector((state)=>state.auth.isLoggedIn);
+  console.log(isLoggedIn);
 
+ 
   const handleDateChange=(e)=>{
     setSelectedDate(e.target.value)
   }
@@ -27,7 +33,7 @@ const Dashboard = () => {
               <p>Number of task</p>
             </div>
             <div style={{display:'flex' , border:'1px solid black' , alignItems:'center'}}>
-              <Button sx={{position:'absolute',bottom:5,left:15,gap:3,color:'black'}}>See All Tasks<ArrowForwardIosIcon></ArrowForwardIosIcon></Button> 
+              <Button onClick={()=>navigate('/dashboard/claim-settled')} sx={{position:'absolute',bottom:5,left:15,gap:3,color:'black'}}>See All Tasks<ArrowForwardIosIcon></ArrowForwardIosIcon></Button> 
             </div>
           </Box>
           <Box sx={{position:'relative',width:'315px',height:'218px',border:'1px solid black',borderRadius:'8px',bgcolor:'#FFFFFF', boxShadow:'10px 10px 20px #ccc' }}>

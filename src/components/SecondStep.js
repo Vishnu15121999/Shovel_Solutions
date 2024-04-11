@@ -16,7 +16,7 @@ const SecondStep = ({handleNext,formData,setFormData}) => {
       <Box>
         <div style={{ margin: '40px 0px' }}>
           <Typography sx={{ color: '#0057B1', marginBottom: 1 }}>Set Password</Typography>
-          <TextField onChange={handleChange} name='set_password' value={formData.set_password} sx={{ width: '400px' }} type='password' />
+          <TextField onChange={handleChange} name='password' value={formData.password} sx={{ width: '400px' }} type='password' />
         </div>
         <div style={{ margin: '40px 0px' }}>
           <Typography sx={{ color: '#0057B1', marginBottom: 1 }}>Confirm Password</Typography>
