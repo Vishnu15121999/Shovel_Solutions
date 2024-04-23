@@ -7,7 +7,7 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 const ChatBot = () => {
   return (
-    <div style={{width:'98%' , height:'100vh', margin:'0 auto' , display:'flex'}}>
+    <div style={{width:'90%' , height:'100vh', margin:'0 auto' , display:'flex' , marginTop:"100px" , marginLeft:'110px'}}>
         <Box sx={{width:'30%', height:'90%' , padding:'5px'}}>
           <Box sx={{display:'flex' , alignItems:'center' , justifyContent:'space-between'}}>
             <Typography variant='h5' sx={{fontWeight:'bold'}} >Messages</Typography>

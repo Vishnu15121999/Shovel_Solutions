@@ -33,7 +33,7 @@ const ClaimComponent = () => {
             <th className='table-head'>Name</th>
             <th className='table-head'>Policy ID</th>
             <th className='table-head'>Policy End Date</th>
-            <th className='table-head'>Policy Company</th>
+            <th className='table-head'>Insurer</th>
             <th className='table-head'>Action</th>
           </tr>
             <tbody>
@@ -55,9 +55,3 @@ const ClaimComponent = () => {
 
 export default ClaimComponent;
 
-
-
-{/* <td className='table-data'>Harshad Waghmare</td>
-            <td className='table-data'>362541</td>
-            <td className='table-data'>12/11/2030</td>
-            <td className='table-data'>HDFC Ergo</td> */}

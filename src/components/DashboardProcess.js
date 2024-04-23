@@ -3,7 +3,7 @@ import {TextField , Box , Button} from '@mui/material';
 import {useSelector , useDispatch} from 'react-redux';
 import { patientActions } from '../store';
 
-const DashboardComponents = () => {
+const DashboardProcess = () => {
     //const data=useSelector((state)=>state.patientData.patients);
     const filters=useSelector((state)=>state.patientData.status);
     const filterData=useSelector((state)=>state.patientData.filterData);
@@ -25,7 +25,7 @@ const DashboardComponents = () => {
         patient.policyID.toLowerCase().includes(searchInput.toLowerCase()));
 
     useEffect(()=>{
-        dispatch(patientActions.selectedFilter('Settled'))
+        dispatch(patientActions.selectedFilter('Process'))
     },[dispatch])
 
 
@@ -77,4 +77,7 @@ const DashboardComponents = () => {
   )
 }
 
-export default DashboardComponents;
+export default DashboardProcess;
+
+
+//DashboardProcess

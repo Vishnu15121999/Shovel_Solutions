@@ -12,7 +12,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import LogoutIcon from '@mui/icons-material/Logout';
 import {useSelector , useDispatch} from 'react-redux';
 import {authActions} from '../store';
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import MessageIcon from '@mui/icons-material/Message';
 import HelpIcon from '@mui/icons-material/Help';
@@ -34,6 +34,8 @@ export default function TemporaryDrawer() {
     navigate('/register')
   }
 
+  //href={`/${item.name.toLowerCase()}`}
+
   const icons=[
     {icon: AdminPanelSettingsIcon , name :'Admin Panel'},
     {icon : DashboardIcon , name :'Dashboard'},
@@ -49,7 +51,7 @@ export default function TemporaryDrawer() {
       <List sx={{marginBottom:30}}>
         {icons.map((item,index)=>(
           <ListItem key={item.name} disablePadding>
-            <ListItemButton href={`/${item.name.toLowerCase()}`}>
+            <ListItemButton LinkComponent={Link} to={`/${item.name.toLowerCase()}`}>
               <ListItemIcon>
                 <item.icon/>
               </ListItemIcon>

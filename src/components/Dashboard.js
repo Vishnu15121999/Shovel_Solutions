@@ -9,6 +9,10 @@ const Dashboard = () => {
   const [selectedDate,setSelectedDate]=useState(null);
   const isLoggedIn=useSelector((state)=>state.auth.isLoggedIn);
   console.log(isLoggedIn);
+  const settledCount=useSelector(state => state.patientData.settledPatientCount);
+  console.log(settledCount);
+  //const filterData=useSelector((state)=>state.patientData.filterData);
+  //console.log(filterData.length);
 
  
   const handleDateChange=(e)=>{
@@ -18,7 +22,7 @@ const Dashboard = () => {
   return (
     <div className='dashboard-container'>
       <div className='dashboard-sub-container'>
-      <Box>
+      <Box sx={{marginLeft:'160px'}}>
         <input className='dashboard-date' type='date' name='date' value={selectedDate} onChange={handleDateChange}/>
       </Box>
       <Box sx={{margin:'5%' , display:'flex' , flexDirection:'column' , gap:5 , alignItems:'center' , justifyContent:'center'}}>
@@ -38,7 +42,7 @@ const Dashboard = () => {
           </Box>
           <Box sx={{position:'relative',width:'315px',height:'218px',border:'1px solid black',borderRadius:'8px',bgcolor:'#FFFFFF', boxShadow:'10px 10px 20px #ccc' }}>
           <div style={{display:'flex' , padding:'0px 10px' , alignItems:'center',justifyContent:'space-between'}}>
-              <h3>Claim Pending</h3>
+              <h3>Query Raised</h3>
               <img src='\images\pending.jpg' alt='logo'/>
             </div>
             <div style={{padding:'0px 10px'}}>
@@ -46,7 +50,20 @@ const Dashboard = () => {
               <p>Number of task</p>
             </div>
             <div style={{display:'flex' , border:'1px solid black'}}>
-              <Button sx={{position:'absolute',bottom:5,left:15,gap:3,color:'black'}}>See All Tasks<ArrowForwardIosIcon></ArrowForwardIosIcon> </Button> 
+              <Button onClick={()=>navigate('/dashboard/claim-pending')} sx={{position:'absolute',bottom:5,left:15,gap:3,color:'black'}}>See All Tasks<ArrowForwardIosIcon></ArrowForwardIosIcon> </Button> 
+            </div>
+          </Box>
+          <Box sx={{position:'relative',width:'315px',height:'218px',border:'1px solid black',borderRadius:'8px',bgcolor:'#FFFFFF' , boxShadow:'10px 10px 20px #ccc'}}>
+          <div style={{display:'flex' , padding:'0px 10px', alignItems:'center',justifyContent:'space-between'}}>
+              <h3>Claim Closed</h3>
+              <img src='\images\closed.jpg' alt='logo'/>
+            </div>
+            <div style={{padding:'0px 10px'}}>
+              <p>Date : {selectedDate}</p>
+              <p>Number of task</p>
+            </div>
+            <div style={{display:'flex' , border:'1px solid black'}}>
+              <Button sx={{position:'absolute',bottom:0,left:5,gap:3,color:'black'}}>See All Tasks<ArrowForwardIosIcon></ArrowForwardIosIcon> </Button> 
             </div>
           </Box>
         </div>
@@ -61,7 +78,7 @@ const Dashboard = () => {
               <p>Number of task</p>
             </div>
             <div style={{display:'flex' , border:'1px solid black'}}>
-              <Button sx={{position:'absolute',bottom:0,left:5,gap:3,color:'black'}}>See All Tasks<ArrowForwardIosIcon></ArrowForwardIosIcon> </Button> 
+              <Button onClick={()=>navigate('/dashboard/claim-process')} sx={{position:'absolute',bottom:0,left:5,gap:3,color:'black'}}>See All Tasks<ArrowForwardIosIcon></ArrowForwardIosIcon> </Button> 
             </div>
           </Box>
           <Box sx={{position:'relative',width:'315px',height:'218px',border:'1px solid black',borderRadius:'8px',bgcolor:'#FFFFFF' , boxShadow:'10px 10px 20px #ccc'}}>
@@ -74,7 +91,7 @@ const Dashboard = () => {
               <p>Number of task</p>
             </div>
             <div style={{display:'flex' , border:'1px solid black'}}>
-              <Button sx={{position:'absolute',bottom:0,left:5,gap:3,color:'black'}}>See All Tasks<ArrowForwardIosIcon></ArrowForwardIosIcon> </Button> 
+              <Button onClick={()=>navigate('/dashboard/claim-rejected')} sx={{position:'absolute',bottom:0,left:5,gap:3,color:'black'}}>See All Tasks<ArrowForwardIosIcon></ArrowForwardIosIcon> </Button> 
             </div>
           </Box>
         </div>

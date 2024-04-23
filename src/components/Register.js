@@ -6,9 +6,12 @@ import FinalStep from './FinalStep'
 import { Box, Step, StepLabel, Stepper } from '@mui/material';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
+import { authActions } from '../store';
+import { useDispatch } from 'react-redux'
 
 const Register = () => {
     const navigate=useNavigate();
+    const dispatch=useDispatch();
     const [activeStep, setActiveStep] = useState(0);
     const [formData,setFormData]=useState({email:"",password:"",firstName:"",lastName:"",hospitalName:"",mobileNumber:""});
 
@@ -31,7 +34,8 @@ const Register = () => {
         //console.log(formData);
         //e.preventDefault();
         sendRequest().then((data)=>localStorage.setItem('userName',data.user.firstName))
-                     .then(()=>navigate('/dashboard'))
+        .then(()=>dispatch(authActions.login))
+        .then(()=>navigate('/organization-form'))
     }
 
     const steps = ['Account Credentials', 'Set Password', 'Personal Details'];

@@ -47,6 +47,8 @@ export const patientSlice=createSlice({
 
         status:['Settled','In-Process','Pending','Rejected','All'],
         filterData:[],
+        settledPatientCount:[],
+        rejectedPatientCount:[]
     },
     reducers:{
         selectedFilter(state,action){
@@ -65,6 +67,17 @@ export const patientSlice=createSlice({
                 ...state,
                 filterData:filterPatients,
             }
+        },
+        getSettledPatientCount(state){
+            let x;
+            x=state.patients.filter((patient) => patient.status === 'Settled').length;
+            return {
+                ...state,
+                settledPatientCount:x
+            }
+        },
+        getRejectedPatientCount(state){
+            return state.patients.filter((patient) => patient.status === 'Rejected').length;
         }
     }
 });

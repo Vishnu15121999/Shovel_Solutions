@@ -24,7 +24,7 @@ const FirstStep = ({handleNext , formData , setFormData}) => {
             <Typography sx={{ color: '#0057B1' }}>Email Address</Typography>
             <Box sx={{ width: '400px', position: 'relative', display: 'inline-block' }}>
                 <TextField onChange={handleChange} type='email' name='email' value={formData.email} sx={{ paddingRight: '40px', width: '100%' }} placeholder='Enter your professional email' />
-                <Button onClick={handleSendOtp} sx={{ position: 'absolute', right: 0, top: 0, bottom: 0, cursor: 'pointer' }}>{isOtpSend ? 'Resend OTP' : 'Send OTP'}</Button>
+                <Button onClick={handleSendOtp} sx={{ position: 'absolute', right: '50px', top: 0, bottom: 0, cursor: 'pointer' }}>{isOtpSend ? 'Resend OTP' : 'Send OTP'}</Button>
             </Box>
             <Typography sx={{ color: 'green' }}>{isOtpSend ? 'OTP is send to email' : ''}</Typography>
             {isOtpSend ? <Box sx={{ marginTop: 3 }}>

@@ -1,21 +1,35 @@
-import { AppBar, IconButton , Box, Button, Toolbar } from '@mui/material'
-import React from 'react'
+import { AppBar, IconButton , Box, Button, Toolbar, Drawer, List, ListItem, Icon } from '@mui/material'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {useSelector} from 'react-redux';
 import { authActions } from '../store';
 import { useDispatch } from 'react-redux';
 import TemporaryDrawer from './TemporaryDrawer'
-import { Avatar} from '@mui/material';
+import Avatar from '@mui/material';
 import Tooltip from '@mui/material/Tooltip';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { styled, useTheme } from '@mui/material/styles';
+
+
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+}));
+
 
 const Header = () => {
+  const theme = useTheme();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const navigate=useNavigate();
   const dispatch=useDispatch();
   const isLoggedIn=useSelector((state)=>state.auth.isLoggedIn);
   //console.log(isLoggedIn);
+  const [isDrawerOpen,setIsDrawerOpen]=useState(false);
 
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -28,6 +42,7 @@ const Header = () => {
 
   const handleLogOut=()=>{
     dispatch(authActions.logout())
+    localStorage.removeItem('userName')
     navigate('/register')
   }
 
@@ -35,10 +50,10 @@ const Header = () => {
 
   return (
     <div>
-      <AppBar sx={{ position: 'sticky' }}>
+      <AppBar sx={{ position: 'static' , background:'linear-gradient(90deg, rgba(0,109,133,1) 0%, rgba(69,179,169,1) 100%, rgba(189,186,114,1) 100%)'}}>
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <TemporaryDrawer/>
+            {/* {isLoggedIn ? <TemporaryDrawer/> : <></>} */}
             <h2 onClick={() => navigate('/')} style={{ fontWeight: 'bold', cursor: 'pointer', textTransform: 'uppercase' }}>Shovel</h2>
           </Box>
           <Box sx={{ display: 'flex', gap: 2 }}>
@@ -56,12 +71,13 @@ const Header = () => {
               <Menu anchorEl={anchorEl} open={open} onClose={handleClose} onClick={handleClose} PaperProps={{ elevation:0, sx:{padding:'0px 20px' , overflow:'visible' , mr:5}}}>
                 <MenuItem><Button>Profile</Button></MenuItem> 
                 <MenuItem><Button>Setting</Button></MenuItem>
-                <MenuItem><Button onClick={handleLogOut}>Logout</Button></MenuItem>
+                <MenuItem><Button>Logout</Button></MenuItem>
               </Menu>
             </>}
           </Box>
         </Toolbar>
       </AppBar>
+      {/* <SideNav isDrawerOpen={isDrawerOpen} handleDrawerOpen={handleDrawerOpen} handleDrawerClose={handleDrawerClose}/> */}
     </div>
   )
 }

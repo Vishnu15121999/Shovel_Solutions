@@ -2,8 +2,10 @@ import { Box, Button, IconButton, Typography } from '@mui/material';
 import React from 'react';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import {useNavigate} from 'react-router-dom';
 
 const PolicyOverView = () => {
+    const navigate=useNavigate();
   return (
     <div style={{backgroundColor:'rgb(245, 245, 245)' , width:'94%' , height:'100vh' , margin:'0 auto' , marginTop:'10px',
                 display:'flex' , flexDirection:'column' , padding:"20px"}}>
@@ -56,7 +58,7 @@ const PolicyOverView = () => {
             </Box>
             <Box sx={{width:'95%' , display:'flex' , alignItems:'center' , justifyContent:'space-around' , marginTop:"30px"}}>
                 <Button variant='contained' sx={{bgcolor:'#FFFFFF' , color:'black' , gap:'10px'}}><ArrowBackIosNewIcon/>Back</Button>
-                <Button variant='contained' sx={{bgcolor:'#0057B1' , gap:'10px'}}>Next<ArrowForwardIosIcon/></Button>
+                <Button onClick={()=>navigate('/insurance-form')} variant='contained' sx={{bgcolor:'#0057B1' , gap:'10px'}}>Next<ArrowForwardIosIcon/></Button>
             </Box>
         </Box>
     </div>
